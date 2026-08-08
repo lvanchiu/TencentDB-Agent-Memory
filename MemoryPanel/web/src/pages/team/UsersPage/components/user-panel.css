@@ -1,0 +1,16 @@
+._memory-user-panel {
+  padding: 1rem;
+}
+
+._memory-user-key-display {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--tea-color-bg-1, #f5f5f5);
+  border-radius: 4px;
+  word-break: break-all;
+  font-family: monospace;
+}
+
+._memory-user-key-text {
+  font-size: 13px;
+}

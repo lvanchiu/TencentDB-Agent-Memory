@@ -23,6 +23,7 @@ const PATH_TO_PAGE: Record<string, PageId> = {
   '/code': 'code',
   '/skills': 'skills',
   '/memory': 'chat_memory',
+  '/team/users': 'users',
   '/team/members': 'team_members',
   '/team/agents': 'team_agents',
   '/team/api-keys': 'api_keys',
@@ -106,6 +107,7 @@ export function ConsoleLayout() {
 
     for (const meta of Object.values(PAGE_META)) {
       if (userRole === 'reviewer' && meta.id === 'team_members') continue;
+      if (userRole !== 'admin' && meta.id === 'users') continue;
       const list = byGroup.get(meta.group) ?? [];
       list.push(meta);
       byGroup.set(meta.group, list);
