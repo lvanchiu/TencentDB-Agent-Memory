@@ -50,6 +50,13 @@ export const initAdminSchema = z.object({
 });
 export const userGetSchema = userIdOrKeySchema;
 export const userDeleteSchema = z.object({ user_ids: idList });
+export const userUpdateSchema = z.object({
+  user_id: nonEmpty,
+  username: nonEmpty.optional(),
+  display_name: z.string().nullable().optional(),
+  email: z.string().nullable().optional(),
+  status: z.enum(['active', 'inactive']).optional(),
+});
 export const userListSchema = z
   .object({
     team_id: nonEmpty.optional(),
@@ -381,6 +388,7 @@ export const configUserSetSchema = z.object({
 export const V3_SCHEMAS = {
   "/v3/meta/user/create": userCreateSchema,
   "/v3/meta/user/get": userGetSchema,
+  "/v3/meta/user/update": userUpdateSchema,
   "/v3/meta/user/delete": userDeleteSchema,
   "/v3/meta/user/list": userListSchema,
   "/v3/meta/user-key/create": userKeyCreateSchema,

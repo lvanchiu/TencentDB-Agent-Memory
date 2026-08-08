@@ -92,6 +92,13 @@ const routeTable: Record<string, Handler> = {
     return s.getUserForCaller(userId, c);
   }),
   [`${V3_PREFIX}/user/delete`]: bind(S.userDeleteSchema, (d, c, s) => s.deleteUsersForCaller(d.user_ids, c)),
+  [`${V3_PREFIX}/user/update`]: bind(S.userUpdateSchema, async (d, c, s) => {
+    s.assertCanManageUsers(c);
+    const { user_id, ...patch } = d;
+    const updated = await s.rawStore.updateUser(user_id, patch);
+    if (!updated) throw new MetadataError("user_not_found", `user not found: ${user_id}`);
+    return s.getUserForCaller(user_id, c);
+  }),
   [`${V3_PREFIX}/user/list`]: bind(S.userListSchema, (d, c, s) =>
     s.listUsersForCaller(d, c, resolvePagination(d)),
   ),

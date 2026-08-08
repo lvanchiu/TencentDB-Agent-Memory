@@ -22,6 +22,7 @@ export type PageId =
   | 'code'
   | 'skills'
   | 'chat_memory'
+  | 'users'
   | 'team_members'
   | 'team_agents'
   | 'api_keys';
@@ -48,6 +49,7 @@ export function usePageMeta(): Record<PageId, PageMeta> {
     code:            { id: 'code',            label: t('menu.code'), desc: t('menu.desc.code'), group: t('menu.group.assets'), order: 3 },
     skills:          { id: 'skills',          label: t('menu.skills'), desc: t('menu.desc.skills'), group: t('menu.group.assets'), order: 4 },
     chat_memory:     { id: 'chat_memory',     label: t('menu.chat_memory'), desc: t('menu.desc.chat_memory'), group: t('menu.group.assets'), order: 5 },
+    users:           { id: 'users',           label: t('menu.users'), desc: t('menu.desc.users'), group: t('menu.group.organization'), order: -1 },
     team_members:    { id: 'team_members',    label: t('menu.team_members'), desc: t('menu.desc.team_members'), group: t('menu.group.organization'), order: 0 },
     team_agents:     { id: 'team_agents',     label: t('menu.team_agents'), desc: t('menu.desc.team_agents'), group: t('menu.group.organization'), order: 1 },
     api_keys:        { id: 'api_keys',        label: t('menu.api_keys'), desc: t('menu.desc.api_keys'), group: t('menu.group.organization'), order: 2 },
@@ -60,6 +62,7 @@ export const GROUP_ORDER_KEYS = ['workbench', 'organization', 'assets'] as const
 /** 每个页面在侧边栏菜单中的图标（Tea 官方图标，size 16） */
 export const ITEM_ICON: Record<PageId, JSX.Element> = {
   workbench_board: <DashboardIcon size={16} />,
+  users: <UsergroupIcon size={16} />,
   team_members: <UserIcon size={16} />,
   team_agents: <UsergroupIcon size={16} />,
   api_keys: <LockOnIcon size={16} />,
