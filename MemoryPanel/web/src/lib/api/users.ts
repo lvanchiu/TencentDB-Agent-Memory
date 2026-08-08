@@ -40,6 +40,10 @@ export const usersApi = {
    * ⚠️ 权限同上，须 system_admin 才能调用。
    */
   delete: (userId: string) => metaPost<{ ok: boolean }>('user/delete', { user_id: userId }),
+
+  /** 更新用户信息（须 system_admin） */
+  update: (userId: string, patch: { username?: string; display_name?: string; email?: string; status?: 'active' | 'inactive' }) =>
+    metaPost<PublicUser>('user/update', { user_id: userId, ...patch }),
 };
 
 // ========================= User API Keys（meta/user-key/*）=========================

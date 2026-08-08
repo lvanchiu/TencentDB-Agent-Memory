@@ -24,6 +24,7 @@ export const META_LIST_ACTIONS = new Set([
 export const META_ACTIONS = [
   'user/create',
   'user/get',
+  'user/update',
   'user/delete',
   'user/list',
   'user-key/create',
