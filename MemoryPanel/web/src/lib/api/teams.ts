@@ -33,7 +33,7 @@ export const teamsApi = {
     metaPost<Team>('team/update', { team_id: teamId, ...data }),
 
   /** 删除 team（meta team/delete） */
-  delete: (teamId: string) => metaPost<{ ok: boolean }>('team/delete', { team_id: teamId }),
+  delete: (teamId: string) => metaPost<{ ok: boolean }>('team/delete', { team_ids: [teamId] }),
 };
 
 export const membersApi = {

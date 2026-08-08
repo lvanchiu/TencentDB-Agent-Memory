@@ -706,8 +706,8 @@ export const zhCN = {
   'team.empty.hint': '请在右上角选择一个 team，或新建一个 team 开始。',
   'team.createTeam': '新建 Team',
   'team.deleteTeam': '删除当前 Team',
-  'team.deleteTeam.tooltip': '团队删除功能尚未在后端稳定支持',
-  'team.deleteTeam.notify': '团队删除功能尚未在后端稳定支持，请联系管理员处理。',
+  'team.deleteTeam.confirm': '确认删除 Team「{{name}}」？此操作不可恢复，将同时删除该 Team 下的所有成员、Agent、任务和资产。',
+  'team.deleteTeam.success': 'Team 已删除。',
   'team.memberCount': '{{count}} 人',
   'team.emptyTeam.title': '还没有归属任何 Team',
   'team.emptyTeam.desc':

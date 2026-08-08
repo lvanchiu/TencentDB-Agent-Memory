@@ -734,9 +734,8 @@ export const enUS = {
   'team.empty.hint': 'Please select a team in the top right, or create a new team to get started.',
   'team.createTeam': 'New Team',
   'team.deleteTeam': 'Delete Current Team',
-  'team.deleteTeam.tooltip': 'Team deletion is not yet stably supported on the backend',
-  'team.deleteTeam.notify':
-    'Team deletion is not yet stably supported on the backend. Please contact your admin.',
+  'team.deleteTeam.confirm': 'Delete Team "{{name}}"? This cannot be undone. All members, agents, tasks, and assets under this team will be removed.',
+  'team.deleteTeam.success': 'Team deleted.',
   'team.memberCount': '{{count}} members',
   'team.emptyTeam.title': "You Don't Belong to Any Team Yet",
   'team.emptyTeam.desc':
