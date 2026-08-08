@@ -53,8 +53,8 @@ export const userDeleteSchema = z.object({ user_ids: idList });
 export const userUpdateSchema = z.object({
   user_id: nonEmpty,
   username: nonEmpty.optional(),
-  display_name: z.string().optional(),
-  email: z.string().optional(),
+  display_name: z.string().nullable().optional(),
+  email: z.string().nullable().optional(),
   status: z.enum(['active', 'inactive']).optional(),
 });
 export const userListSchema = z

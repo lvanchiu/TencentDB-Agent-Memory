@@ -61,19 +61,19 @@ export default function UserPanel({ isAdmin }: { isAdmin: boolean }) {
 
   const columns = [
     { key: 'username', header: t('users.col.username'), render: (u: PublicUser) => u.username },
-    { key: 'user_id', header: 'User ID', render: (u: PublicUser) => <Text copyable>{u.user_id}</Text> },
+    { key: 'user_id', header: t('users.col.userId'), render: (u: PublicUser) => <Text copyable>{u.user_id}</Text> },
     {
       key: 'user_type', header: t('users.col.type'),
       render: (u: PublicUser) => (
         <Tag theme={u.user_type === 'system_admin' ? 'warning' : 'default'}>
-          {u.user_type === 'system_admin' ? 'Admin' : 'User'}
+          {u.user_type === 'system_admin' ? t('users.type.admin') : t('users.type.user')}
         </Tag>
       ),
     },
     {
       key: 'status', header: t('users.col.status'),
       render: (u: PublicUser) => (
-        <Tag theme={u.status === 'active' ? 'success' : 'default'}>{u.status}</Tag>
+        <Tag theme={u.status === 'active' ? 'success' : 'default'}>{u.status === 'active' ? t('users.status.active') : t('users.status.inactive')}</Tag>
       ),
     },
     { key: 'created_at', header: t('users.col.createdAt'), render: (u: PublicUser) => u.created_at?.slice(0, 10) },
@@ -193,7 +193,7 @@ function CreateUserModal({
       <Modal.Body>
         <Form>
           <Form.Item label={t('users.form.username')} required>
-            <Input value={username} onChange={(v) => setUsername(v)} placeholder="e.g. zhangsan" />
+            <Input value={username} onChange={(v) => setUsername(v)} placeholder={t('users.form.usernamePlaceholder')} />
           </Form.Item>
           <Form.Item label={t('users.form.displayName')}>
             <Input value={displayName} onChange={(v) => setDisplayName(v)} />
@@ -241,8 +241,8 @@ function EditUserModal({
     try {
       await usersApi.update(user.user_id, {
         username: username.trim(),
-        display_name: displayName.trim() || undefined,
-        email: email.trim() || undefined,
+        display_name: displayName.trim() || null,
+        email: email.trim() || null,
         status,
       });
       tea.notify.success(t('users.update.success'));
@@ -268,9 +268,9 @@ function EditUserModal({
             <Input value={email} onChange={(v) => setEmail(v)} />
           </Form.Item>
           <Form.Item label={t('users.col.status')}>
-            <Button type={status === 'active' ? 'primary' : 'weak'} onClick={() => setStatus('active')}>Active</Button>
+            <Button type={status === 'active' ? 'primary' : 'weak'} onClick={() => setStatus('active')}>{t('users.status.active')}</Button>
             {' '}
-            <Button type={status === 'inactive' ? 'primary' : 'weak'} onClick={() => setStatus('inactive')}>Inactive</Button>
+            <Button type={status === 'inactive' ? 'primary' : 'weak'} onClick={() => setStatus('inactive')}>{t('users.status.inactive')}</Button>
           </Form.Item>
         </Form>
       </Modal.Body>

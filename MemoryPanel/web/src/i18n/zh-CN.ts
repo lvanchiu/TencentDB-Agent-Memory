@@ -1131,6 +1131,12 @@ export const zhCN = {
   'users.form.username': '用户名',
   'users.form.displayName': '显示名称',
   'users.form.email': '邮箱',
+  'users.form.usernamePlaceholder': '例如 zhangsan',
+  'users.col.userId': '用户 ID',
+  'users.type.admin': '管理员',
+  'users.type.user': '用户',
+  'users.status.active': '活跃',
+  'users.status.inactive': '停用',
   'users.created.title': '用户创建成功',
   'users.created.desc': '以下是该用户的 API Key（仅显示一次，请妥善保存）：',
 };

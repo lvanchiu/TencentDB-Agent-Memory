@@ -1178,6 +1178,12 @@ export const enUS = {
   'users.form.username': 'Username',
   'users.form.displayName': 'Display Name',
   'users.form.email': 'Email',
+  'users.form.usernamePlaceholder': 'e.g. zhangsan',
+  'users.col.userId': 'User ID',
+  'users.type.admin': 'Admin',
+  'users.type.user': 'User',
+  'users.status.active': 'Active',
+  'users.status.inactive': 'Inactive',
   'users.created.title': 'User Created',
   'users.created.desc': 'Below is the user API key (shown only once, save it securely):',
 };
