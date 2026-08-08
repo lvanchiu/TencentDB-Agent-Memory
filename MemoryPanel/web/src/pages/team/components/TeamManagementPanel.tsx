@@ -19,7 +19,7 @@
  *
  * 已知限制（如实反映后端当前能力，不做假 UI）：
  *   - Agent owner 由后端在创建时固定为当前登录用户，暂不支持转交；
- *   - Team 删除接口后端尚未稳定支持，本面板暂不提供（按钮点击后提示联系管理员）；
+ *   - Team 删除需 owner/admin 权限，删除时级联清理成员、Agent、任务和资产；
  *   - skills / code_graphs / llm_wikis / chat_memories 全部走真实后端 API
  *
  * 文件拆分（本文件仅保留组合/编排逻辑，具体实现见同目录下）：
@@ -259,10 +259,21 @@ export default function TeamManagementPanel({
               )}
               {(isTeamAdmin(activeTeam, currentUser) || _isAdmin) && (
                 <Button
-                  onClick={() =>
-                    tea.notify.warning(t('team.deleteTeam.notify'))
-                  }
-                  title={t('team.deleteTeam.tooltip')}
+                  onClick={async () => {
+                    const ok = await tea.confirm({
+                      message: t('team.deleteTeam'),
+                      description: t('team.deleteTeam.confirm', { name: activeTeam.name }),
+                    });
+                    if (!ok) return;
+                    try {
+                      await teamsApi.delete(activeTeam.team_id);
+                      tea.notify.success(t('team.deleteTeam.success'));
+                      invalidateBackendCache();
+                    } catch (e) {
+                      tea.notify.error(errMsg(e));
+                    }
+                  }}
+                  title={t('team.deleteTeam')}
                 >
                   {t('team.deleteTeam')}
                 </Button>
