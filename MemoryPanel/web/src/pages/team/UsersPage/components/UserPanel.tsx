@@ -73,7 +73,7 @@ export default function UserPanel({ isAdmin }: { isAdmin: boolean }) {
     {
       key: 'status', header: t('users.col.status'),
       render: (u: PublicUser) => (
-        <Tag theme={u.status === 'active' ? 'success' : 'default'}>{u.status === 'active' ? t('users.status.active') : t('users.status.inactive')}</Tag>
+        <Tag theme={u.status !== 'inactive' ? 'success' : 'default'}>{u.status === 'inactive' ? t('users.status.inactive') : t('users.status.active')}</Tag>
       ),
     },
     { key: 'created_at', header: t('users.col.createdAt'), render: (u: PublicUser) => u.created_at?.slice(0, 10) },
